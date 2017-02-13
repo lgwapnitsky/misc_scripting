@@ -1,0 +1,18 @@
+﻿Product,Code,CampaignFullfillment,Events,Interactive,Creative,MLR
+SpeakerDirect,SD,N,Y,Y,Y,Y
+TrainingDirect,TD,N,Y,Y,Y,Y
+AdvisorDirect,AD,N,Y,Y,Y,Y
+BroadcastDirect,BD,N,Y,Y,Y,Y
+ExpressConnect,EC,N,Y,Y,Y,Y
+Other EventDirect program,ED,N,Y,y,Y,Y
+Target NewsChannel,TNC,Y,N,N,Y,Y
+Speaker NewsChannel,SNC,Y,N,N,Y,Y
+Attendee NewsChannel,ANC,Y,N,N,Y,Y
+HCP Response NewsChannel/Write Response,HCPNC,Y,N,N,Y,Y
+Managed Care NewsChannel (including AIM and C&C),MCNC,Y,N,N,Y,Y
+Sales NewsChannel/Rep Triggered Mail,SaNC,Y,N,N,Y,Y
+Other MarketingDirect NewsChannel,NC,Y,N,N,Y,Y
+CommunityDirect,CD,N,N,Y,Y,Y
+Media Hub,HUB,N,N,N,Y,Y
+Special Project,SP,N,N,N,Y,Y
+Special Video Project,SVP,N,N,N,Y,Y

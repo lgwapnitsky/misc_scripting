@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Client Name="">
+  <Brand Name="">
+    <Year Name="">
+      <AccountManagement Name="AccountManagement" required="true"/>
+      <Project Name="[ProjectCode]" required="true">
+        <Team Name="Creative" required="true">
+          <Folder Name="Footage"/>
+          <Foldber Name="Premiere"/>
+          <Folder Name="AE"/>
+          <Folder Name="Renders"/>
+          <Folder Name="Script Storyboard"/>
+          <Folder Name="Mockups"/>
+          <Folder Name="PDF Edits"/>
+          <Folder Name="Resources"/>
+          <Folder Name="Specs"/>
+        </Team>
+        <Team Name="Events" required="false"/>
+        <Team Name="CampaignFullfillment" required="false">
+          <Folder Name="Artwork"/>
+          <Folder Name="Billing"/>
+          <Folder Name="BRC"/>
+          <Folder Name="ClientData"/>
+          <Folder Name="Inventory"/>
+          <Folder Name="Lettershop"/>
+          <Folder Name="Logo"/>
+          <Folder Name="MailFiles"/>
+          <Folder Name="PDFs"/>
+          <Folder Name="Reports"/>
+          <Folder Name="Specs"/>
+          <Folder Name="Templates"/>
+        </Team>
+        <Team Name="Interactive" required="false"/>
+        <Team Name="MLR" required="true">
+          <Folder Name="Prep Docs"/>
+          <Folder Name="First Submission"/>
+          <Folder Name="First Submission Comments"/>
+          <Folder Name="Second Submission"/>
+          <Folder Name="Second Submission Comments"/>
+          <Folder Name="Third Submission"/>
+          <Folder Name="Third Submission Comments"/>
+          <Folder Name="Approvals and Launch Info"/>
+        </Team>
+      </Project>
+    </Year>
+  </Brand>
+</Client>
