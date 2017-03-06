@@ -52,7 +52,7 @@ def NMScan(client):
     
 
 
-# In[5]:
+# In[4]:
 
 def JobStatus(client):
     ## connect to bareos database
@@ -61,7 +61,7 @@ def JobStatus(client):
     conn = psycopg2.connect(conn_string)
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     
-    cursor.execute("""select * from job where name LIKE %s AND (jobstatus like 'T' OR jobstatus like 'W') """, (client,))
+    cursor.execute("""select * from job where name LIKE %s AND (jobstatus like 'T' OR jobstatus like 'W') order by endtime """, (client,))
 
     x = cursor.fetchall()
     if cursor.rowcount > 1:
@@ -71,7 +71,7 @@ def JobStatus(client):
         jendTime = datetime.date(row["endtime"])
         delta = datetime.date(now) - jendTime
 
-        
+        #print delta
         if delta > timedelta(days=7):
             ## if the job ran more than a week ago, run a backup
             print ('JobID: %s\tName: %s\tEnd Time: %s\nStatus: %s\tErrors: %s' % (row["jobid"], row["name"], row["endtime"], row["jobstatus"], row["joberrors"]))
@@ -85,7 +85,7 @@ def JobStatus(client):
         runBareosJob(client)
 
 
-# In[4]:
+# In[5]:
 
 def runBareosJob(client):
     ## get the bareos password from the director's configuration file
