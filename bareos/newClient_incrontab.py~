@@ -31,7 +31,7 @@ bInfo = getpwnam('bareos')
 
 file_list = next(os.walk(BareOSClientDropPath))[2]
 
-sysRX = re.compile(r'(?i)(^.*(\-(wks$|lt$|pc$)))', re.MULTILINE)
+sysRX = re.compile(r'(?i)(^.*(\-(wks$|lt$)))', re.MULTILINE)
 for file in file_list:
     if re.match(sysRX, file):
         confFile = clientPath + file + '.conf'
