@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[1]:
+# In[22]:
 
 import os
 import sys
@@ -14,7 +14,7 @@ import nmap
 from datetime import timedelta, datetime, date, time
 
 
-# In[2]:
+# In[23]:
 
 def confFileList():
     ## Import workstation/laptop config files, remove .conf extension, sort alphabetically
@@ -28,7 +28,7 @@ def confFileList():
     return file_list
 
 
-# In[3]:
+# In[24]:
 
 def NMScan(client):
     ## scan the specified client to see if port 9102 (bareos) is open
@@ -52,7 +52,7 @@ def NMScan(client):
     
 
 
-# In[4]:
+# In[25]:
 
 def JobStatus(client):
     ## connect to bareos database
@@ -85,20 +85,48 @@ def JobStatus(client):
         runBareosJob(client)
 
 
-# In[5]:
+# In[26]:
 
 def runBareosJob(client):
     ## get the bareos password from the director's configuration file
     bPassRX = re.compile(r'^\ +Password\ =\ \"(.*)\"', re.MULTILINE)
     dirPFind = bPassRX.findall(open('/etc/bareos/bareos-dir.d/director/bareos-dir.conf').read())
     password = bareos.bsock.Password(dirPFind[0])
-
-    ## run a backup job for the specified client
     directorconsole = bareos.bsock.DirectorConsole(address="localhost", port=9101, password=password)
-    print directorconsole.call("run job="+ client + " yes")
+
+    # test to see if client name matches one that is called
+    clientInfo = (bytes(directorconsole.call("status client="+ client + '-fd')).split('\n'))
+    fd_rx = re.compile(r"^(" + re.escape(client) + r"\-fd\ Version)", re.IGNORECASE)
+
+    for line in clientInfo:
+        # print line
+        if fd_rx.search(line):
+            ## run a backup job for the specified client
+            print line
+            print "Running %s" % client
+            print directorconsole.call("run job="+ client + " yes")
+            break
+        else:
+            #correct_rx1 = re.compile(r"^(.*-(lt|wks)\-fd)", re.IGNORECASE | re.MULTILINE)
+            #matches = correct_rx1.findall(line)
+            correct_rx = re.compile(r"^(.*\-lt|wks)\-fd\ Version", re.IGNORECASE|re.MULTILINE)
+            matches = correct_rx.findall(line)
+            if matches:
+                #m1 = str(matches[0][0]).lower()
+                #correct_rx2 = re.compile(r"(.*\ )?(.*-(lt|wks))$")
+                #m2 = correct_rx2.findall(m1)
+                #print m2
+                #val = m2[0][len(m2)]
+                print line
+                val = str(matches[0]).lower()
+                #newFD = "%s-fd" % (val)
+                print "client should be %s" % (val)
+                
+                print directorconsole.call("run job="+ val + " yes")
+                break
 
 
-# In[6]:
+# In[27]:
 
 def main():
     global now 
@@ -110,7 +138,7 @@ def main():
     
 
 
-# In[7]:
+# In[28]:
 
 if __name__ == "__main__":
     main()
