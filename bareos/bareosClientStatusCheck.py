@@ -57,7 +57,7 @@ def NMScan(client):
 def JobStatus(client):
     ## connect to bareos database
     ## look for jobs related to specific client with status of Complete ("T") or Complete with Warnings ("W)
-    conn_string = "host='localhost' dbname='bareos' user='bareosquery' password='vJd58c2C'"
+    conn_string = "host='localhost' dbname='bareos' user='bareosquery' password='******'"
     conn = psycopg2.connect(conn_string)
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     
